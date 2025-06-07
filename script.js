@@ -1,6 +1,6 @@
 async function renderSheet(sheetName, containerId) {
   try {
-    const url = `https://docs.google.com/spreadsheets/d/1FlcMPeXZ6IfqqbrMqoNxcRqrRBmS_-31K_o618xQVDU/gviz/tq?tqx=out:json&sheet=${sheetName}`;
+    const url = `https://docs.google.com/spreadsheets/d/1FlcMPeXZ6IfqqbrMqoNxcRqrRBmS_-31K_o618xQVDU/gviz/tq?tqx=out:json&sheet=${encodeURIComponent(sheetName)}`;
     const res = await fetch(url);
     const text = await res.text();
     const json = JSON.parse(text.substring(47).slice(0, -2));
@@ -34,9 +34,8 @@ async function renderSheet(sheetName, containerId) {
       const applyLink = row[7];
       const dateUpdated = row[0];
       const criterias = row[5];
-
+      console.log(company);
       const techList = techSkills ? techSkills.split(",").map((s) => s.trim()) : [];
-
       const card = document.createElement("div");
       card.className =
         "bg-white p-5 rounded-xl shadow hover:shadow-lg transition";
