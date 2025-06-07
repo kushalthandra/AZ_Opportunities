@@ -34,7 +34,6 @@ async function renderSheet(sheetName, containerId) {
       const applyLink = row[7];
       const dateUpdated = row[0];
       const criterias = row[5];
-      console.log(company);
       const techList = techSkills ? techSkills.split(",").map((s) => s.trim()) : [];
       const card = document.createElement("div");
       card.className =
